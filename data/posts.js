@@ -8,14 +8,31 @@ export const POSTS = [
         caption: 'An apple a day will keep anyone away if you throw it hard enough.',
         profile_picture: USERS[0].image,
         comments: [
+            // {
+            //     user: 'sameed',
+            //     comment: 'Wow! this is good. Looking forward to see more like this'
+            // },
+            // {
+            //     user: 'user123',
+            //     comment: 'Wow! this is good. Looking forward to see more like this'
+            // }
+        ]
+    },
+    {
+        imageUrl: 'https://www.online-tech-tips.com/wp-content/uploads/2022/05/instagram-1.jpeg',
+        user: USERS[1].user,
+        likes: 9090,
+        caption: 'An apple a day will keep anyone away if you throw it hard enough.',
+        profile_picture: USERS[1].image,
+        comments: [
             {
                 user: 'sameed',
                 comment: 'Wow! this is good. Looking forward to see more like this'
             },
-            {
-                user: 'user123',
-                comment: 'Wow! this is good. Looking forward to see more like this'
-            }
+            // {
+            //     user: 'user123',
+            //     comment: 'Wow! this is good. Looking forward to see more like this'
+            // }
         ]
     },
     {
@@ -35,4 +52,6 @@ export const POSTS = [
             }
         ]
     }
+
+
 ]

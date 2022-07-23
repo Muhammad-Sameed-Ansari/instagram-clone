@@ -11,6 +11,10 @@ const Post = ({ post }) => {
                 <PostFooter />
                 <Likes post={ post } />
                 <Caption post={ post } />
+                { !!post.comments.length && (
+                    <CommentsSection post={ post } />
+                )}
+                <Comments post={ post } />
             </View>
             
         </View>
@@ -89,7 +93,34 @@ const Likes = ({ post }) => (
 )
 
 const Caption = ({ post }) => (
-    <Text style={{ color: 'white' }}>{ post.user }</Text>
+    <View style={{ marginTop: 5 }}>
+        <Text style={{ color: 'white' }}>
+            <Text style={{ fontWeight: '600'}}>{ post.user }</Text>
+            <Text> { post.caption }</Text>
+        </Text>
+    </View>
+)
+
+const CommentsSection = ({ post }) => (
+    <View style={{ marginTop: 5 }}>
+        <Text style={{ color: 'grey' }}>
+            View{ post.comments.length > 1 ? ' all' : '' } { post.comments.length }
+            { post.comments.length > 1 ? ' comments' : ' comment' }
+        </Text>
+    </View>
+)
+
+const Comments = ({ post }) => (
+    <View>
+        { post.comments.map((comment, index) => (
+            <View key={ index } style={{ flexDirection: 'row', marginTop: 5 }}>
+                <Text style={{ color: 'white' }}>
+                    <Text style={{ fontWeight: '600'}}>{ comment.user }</Text>
+                    <Text> { comment.comment }</Text>
+                </Text>
+            </View>
+        ))}
+    </View>
 )
 
 const styles = StyleSheet.create({
