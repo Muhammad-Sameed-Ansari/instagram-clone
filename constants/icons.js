@@ -6,6 +6,8 @@ const reels_active_icon = require("../assets/reels-active-icon.png")
 const reels_inactive_icon = require("../assets/reels-inactive-icon.png")
 const shop_active_icon = require("../assets/shop-active-icon.png")
 const shop_inactive_icon = require("../assets/shop-inactive-icon.png")
+const back_button_icon = require("../assets/back-button-icon.png")
+const placeholder_image = require('../assets/placeholder-image.png')
 
 export default {
     home_active,
@@ -15,5 +17,7 @@ export default {
     reels_active_icon,
     reels_inactive_icon,
     shop_active_icon,
-    shop_inactive_icon
+    shop_inactive_icon,
+    back_button_icon,
+    placeholder_image
 }

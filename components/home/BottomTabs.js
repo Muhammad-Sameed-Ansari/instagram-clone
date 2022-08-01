@@ -1,8 +1,9 @@
-import { View, Text, TouchableOpacity, Image, StyleSheet } from 'react-native'
+import { View, TouchableOpacity, Image, StyleSheet } from 'react-native'
 import React, { useState } from 'react'
 import { Divider } from 'react-native-elements'
 
 import { icons } from '../../constants'
+import { USERS } from '../../data/users'
 
 export const bottomTabIcons = [
     {
@@ -24,11 +25,6 @@ export const bottomTabIcons = [
         name: 'Shop',
         active: icons.shop_active_icon,
         inactive: icons.shop_inactive_icon
-    },
-    {
-        name: 'Profile',
-        active: icons.home_active,
-        inactive: icons.home_inactive
     }
 ]
 
@@ -42,6 +38,15 @@ const BottomTabs = ({ tabIcons }) => {
                 {tabIcons.map((icon, index) => (
                     <Icon key={index} icon={icon} activeTab={activeTab} setActiveTab={setActiveTab}/>
                 ))}
+                <TouchableOpacity onPress={() => setActiveTab('Profile')}>
+                    <Image 
+                        source={{ uri: USERS[0].image}} 
+                        style={[
+                            styles.icon, 
+                            styles.profilePic(activeTab)
+                        ]}     
+                    />
+                </TouchableOpacity>
             </View>
         </View>
     )
@@ -55,7 +60,11 @@ const Icon = ({ icon, activeTab, setActiveTab}) => (
 
 const styles = StyleSheet.create({
     wrapper: {
-
+        position: 'absolute',
+        width: '100%',
+        bottom: '3%',
+        zIndex: 999,
+        backgroundColor: '#000'
     },
     container: {
         flexDirection: 'row',
@@ -66,7 +75,12 @@ const styles = StyleSheet.create({
     icon: {
         width: 30,
         height: 30
-    }
+    },
+    profilePic: (activeTab = '') => ({
+        borderRadius: 50,
+        borderWidth: activeTab === 'Profile' ? 2 : 0,
+        borderColor: '#fff'
+    })
 })
 
 export default BottomTabs
