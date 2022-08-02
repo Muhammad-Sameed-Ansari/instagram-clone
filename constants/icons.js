@@ -8,6 +8,7 @@ const shop_active_icon = require("../assets/shop-active-icon.png")
 const shop_inactive_icon = require("../assets/shop-inactive-icon.png")
 const back_button_icon = require("../assets/back-button-icon.png")
 const placeholder_image = require('../assets/placeholder-image.png')
+const instagram_logo = require("../assets/instagram-logo.png")
 
 export default {
     home_active,
@@ -19,5 +20,6 @@ export default {
     shop_active_icon,
     shop_inactive_icon,
     back_button_icon,
-    placeholder_image
+    placeholder_image,
+    instagram_logo
 }

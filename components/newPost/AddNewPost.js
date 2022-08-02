@@ -4,18 +4,18 @@ import React from 'react'
 import { icons } from '../../constants'
 import FormikPostUploader from './FormikPostUploader'
 
-const AddNewPost = () => {
+const AddNewPost = ({ navigation }) => {
     return (
         <View style={styles.container}>
-            <Header />
-            <FormikPostUploader />
+            <Header navigation={navigation}/>
+            <FormikPostUploader navigation={navigation}/>
         </View>
     )
 }
 
-const Header = () => (
+const Header = ({ navigation }) => (
     <View style={styles.headerContainer}>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.goBack()}>
             <Image source={icons.back_button_icon} style={{ width: 25, height: 25 }}/>
         </TouchableOpacity>
         <Text style={styles.headerText}>New Post</Text>
