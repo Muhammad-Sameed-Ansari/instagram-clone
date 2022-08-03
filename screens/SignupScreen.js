@@ -4,7 +4,7 @@ import React from 'react'
 import { icons } from '../constants'
 import SignupForm from '../components/signupScreen/SignupForm'
 
-const SignupScreen = () => (
+const SignupScreen = ({ navigation }) => (
     <View style={styles.container}>
             <View style={styles.logoContainer}>
                 <Image 
@@ -12,7 +12,7 @@ const SignupScreen = () => (
                     style={{ width: 100, height: 100}}
                 />
             </View>
-            <SignupForm />
+            <SignupForm navigation={navigation}/>
         </View>
 )
 

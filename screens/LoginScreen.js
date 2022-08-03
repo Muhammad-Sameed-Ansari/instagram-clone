@@ -4,7 +4,7 @@ import React from 'react'
 import { icons } from '../constants'
 import LoginForm from '../components/loginScreen/LoginForm'
 
-const LoginScreen = () => (
+const LoginScreen = ({ navigation }) => (
         <View style={styles.container}>
             <View style={styles.logoContainer}>
                 <Image 
@@ -12,7 +12,7 @@ const LoginScreen = () => (
                     style={{ width: 100, height: 100}}
                 />
             </View>
-            <LoginForm />
+            <LoginForm navigation={navigation}/>
         </View>
 )
 

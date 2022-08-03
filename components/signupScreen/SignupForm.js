@@ -5,7 +5,7 @@ import { Formik } from 'formik'
 import * as Yup from 'yup'
 import Validator from 'email-validator'
 
-const SignupForm = () => {
+const SignupForm = ({ navigation }) => {
     const SignupFormSchema = Yup.object().shape({
         email: Yup.string().email().required('An email is required'),
         username: Yup.string().required().min(2, 'A username is required with at least 2 characters'),
@@ -92,23 +92,19 @@ const SignupForm = () => {
                             value={values.password}
                         />
                     </View>
-
-                    <View style={{ alignItems: 'flex-end', marginBottom: 30 }}>
-                        <Text style={{ color: '#6BB0F5'}}>Forgot password?</Text>
-                    </View>
                     
                     <Pressable 
                         titleSize={20} 
                         style={styles.button(isValid)}
                         onPress={handleSubmit}
                     >
-                        <Text style={styles.buttonText}>Log in</Text>
+                        <Text style={styles.buttonText}>Sign Up</Text>
                     </Pressable>
 
                     <View style={styles.signupContainer}>
-                        <Text>Don't have an account?</Text>
-                        <TouchableOpacity>
-                            <Text style={{ color: '#6BB0F5'}}> Sign Up</Text>
+                        <Text>Already have an account?</Text>
+                        <TouchableOpacity onPress={() => navigation.goBack()}>
+                            <Text style={{ color: '#6BB0F5'}}> Log In</Text>
                         </TouchableOpacity>
                     </View>
                 </View>
@@ -134,7 +130,8 @@ const styles = StyleSheet.create({
         minHeight: 42,
         alignItems: 'center',
         justifyContent: 'center',
-        borderRadius: 4
+        borderRadius: 4,
+        marginTop: 40
     }),
     buttonText: {
         fontWeight: '600',
