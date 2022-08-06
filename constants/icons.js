@@ -9,6 +9,8 @@ const shop_inactive_icon = require("../assets/shop-inactive-icon.png")
 const back_button_icon = require("../assets/back-button-icon.png")
 const placeholder_image = require('../assets/placeholder-image.png')
 const instagram_logo = require("../assets/instagram-logo.png")
+const like_red_icon = require("../assets/like-red-icon.png")
+const like_icon = require("../assets/like-heart-icon.png")
 
 export default {
     home_active,
@@ -21,5 +23,7 @@ export default {
     shop_inactive_icon,
     back_button_icon,
     placeholder_image,
-    instagram_logo
+    instagram_logo,
+    like_red_icon,
+    like_icon
 }

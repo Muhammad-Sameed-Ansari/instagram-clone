@@ -1,14 +1,42 @@
 import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native'
 import { Divider } from 'react-native-elements'
+import { db, firebase } from '../../firebase'
+
+import { icons } from '../../constants'
 
 const Post = ({ post }) => {
+    const handleLike = post => {
+        const currentLikeStatus = !post.likes_by_users.includes(
+            firebase.auth().currentUser.email
+        )
+
+        db.collection('users')
+        .doc(post.owner_email)
+        .collection('posts')
+        .doc(post.id)
+        .update({
+            likes_by_users: currentLikeStatus
+                ? firebase.firestore.FieldValue.arrayUnion(
+                    firebase.auth().currentUser.email
+                )
+                : firebase.firestore.FieldValue.arrayRemove(
+                    firebase.auth().currentUser.email
+                )
+        })
+        .then(() => {
+            console.log('Document successfully updated!')
+        })
+        .catch(error => {
+            console.log('Error updating document: ', error)
+        })
+    }
     return (
         <View style={{ marginBottom: 30 }}>
             <Divider width={ 3 } orientation='vertical' />
             <PostHeader post={ post } />
             <PostImage post={ post } />
             <View style={{ marginHorizontal: 15, marginTop: 10 }}>
-                <PostFooter />
+                <PostFooter post={post} handleLike={handleLike} />
                 <Likes post={ post } />
                 <Caption post={ post } />
                 { !!post.comments.length && (
@@ -56,11 +84,16 @@ const PostImage = ({ post }) => (
     </View>
 )
 
-const PostFooter = () => (
+const PostFooter = ({ post , handleLike }) => (
     <View style={{ flexDirection: 'row' }}>
         <View style={ styles.leftFooterIconsContainer }>
-            <TouchableOpacity>
-                <Image style={ styles.footerIcon } source={ require('../../assets/like-heart-icon.png') } />
+            <TouchableOpacity onPress={() => handleLike(post)}>
+                <Image 
+                    style={ styles.footerIcon } 
+                    source={ post.likes_by_users.includes(firebase.auth().currentUser.email) 
+                            ? icons.like_red_icon
+                            : icons.like_icon } 
+                />
             </TouchableOpacity>
 
             <TouchableOpacity>
@@ -88,7 +121,7 @@ const PostFooter = () => (
 
 const Likes = ({ post }) => (
     <View style={{ flexDirection: 'row', marginTop: 8 }}>
-        <Text style={{ color: 'white', fontWeight: '600' }}>{ post.likes.toLocaleString('en') } likes</Text>
+        <Text style={{ color: 'white', fontWeight: '600' }}>{ post.likes_by_users.length.toLocaleString('en') } likes</Text>
     </View>
 )
 
